@@ -6,7 +6,7 @@ COPY --from=clone /build /build
 RUN set -xe \
     && cd /build \
     && make before_build \
-    && make build
+    && CGO_ENABLED=0 make build
 
 FROM alpine
 COPY --from=build /build/fping-exporter_linux_amd64 /usr/bin/fping-exporter
